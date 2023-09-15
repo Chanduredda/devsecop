@@ -22,19 +22,11 @@ pipeline {
           jacoco execPattern: 'target/jacoco.exec'
 
         } 
- }
-
-               stage('Docker Build and Push') {
-                  steps {
-                    withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
-                    sh 'printenv'
-              sh 'sudo docker build -t chandrareddya/devsecops:""$GIT_COMMIT"" .'
-              sh 'docker push chandrareddya/devsecops:""$GIT_COMMIT""'
-                    }
-                  }
-              }
-
+    }
 
 
           }
+
+
+          
       }
