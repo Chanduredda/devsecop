@@ -14,20 +14,16 @@ stages {
         stage('Unit Tests - JUnit and JaCoCo') {
         steps {
             sh "mvn test"
+            
         }
+         
         }
 
         stage('Mutation Tests - PIT') {
         steps {
             sh "mvn org.pitest:pitest-maven:mutationCoverage"
         }
-        post {
-            always {
-                junit 'target/surefire-reports/*XML'
-                jacoco execPattern: 'target/jaccoco.exec'
-            }
-        }
-
+      
         }
 }
 
