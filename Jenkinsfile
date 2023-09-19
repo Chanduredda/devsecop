@@ -13,17 +13,16 @@ stages {
         stage('Unit Tests - JUnit and JaCoCo') {
         steps {
             sh "mvn test"
-
-        post {
-        success {
-            jacoco(
-                execPattern: '**/build/jacoco/*.exec',
-                classPattern: '**/build/classes/java/main',
-                sourcePattern: '**/src/main'
-            )
+            
+        }
+         post {
+        always {
+            
+            junit 'target/surefire-reports/*XML'
+            jacoco execPattern: 'target/jaccoco.exec'
+            
         }
     }
-        }
      }
 
         stage('Mutation Tests - PIT') {
