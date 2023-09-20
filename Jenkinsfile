@@ -31,7 +31,7 @@ stages {
       steps {
         withDockerRegistry([credentialsId: "docker-hub", url: ""]) {
           sh 'printenv'
-          sh 'sudo docker build -t chandrareddya/numeric-app:""$GIT_COMMIT"" .'
+          sh 'sudo docker build -t chandrareddya/devsecops:""$GIT_COMMIT"" .'
           sh 'docker push chandrareddya/devsecops:""$GIT_COMMIT""'
         }
       }
