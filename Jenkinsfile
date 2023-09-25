@@ -25,7 +25,7 @@ pipeline {
     stage('Docker image build and push') {
       steps {
         sh 'docker build -t devsecops89:5000/java-app:latest'
-        sh 'docker push devsecops89:5000/java-app:latest'
+        sh 'docker push devsecops89:5000/devsecops:latest'
         
        }
      }
