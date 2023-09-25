@@ -10,7 +10,7 @@ pipeline {
       }
     }
 
-    stage('Unit Test-JUnit amd Jacaco') {
+    stage('Unit Test-JUnit and Jacaco') {
       steps{
         sh "mvn test"
       }
@@ -22,6 +22,14 @@ pipeline {
         }
       }
     }
+
+    stage('Docker image build and push') {
+      steps {
+        sh 'docker build -t docker-registry:5000/java-app:latest .'
+        sh 'docker push docker-registry:5000/java-app:latest'
+       }
+     }
+
   }
 
 }
