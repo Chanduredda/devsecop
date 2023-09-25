@@ -10,11 +10,10 @@ pipeline {
       }
     }
 
-    stage('Unit Test-JUnit and Jacaco') {
-      steps{
+    stage('Unit Tests - JUnit and Jacoco') {
+      steps {
         sh "mvn test"
       }
-
       post {
         always {
           junit 'target/surefire-reports/*.xml'
@@ -30,7 +29,13 @@ pipeline {
        }
      }
 
+    stage('Kubernetes Deployment - DEV') {
+      steps {
+        sh "sed -i 's#REPLACE_ME#docker-registry:5000/java-app:latest#g' k8s_deployment_service.yaml"
+        sh "kubectl apply -f k8s_deployment_service.yaml"
+      }
+    }
   }
-
 }
+
 
