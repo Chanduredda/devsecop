@@ -22,15 +22,6 @@ pipeline {
         }
       }
     }
-
-    stage(Docker image build and push){
-      steps{
-
-         sh 'docker build -t docker-registry:5000/java-app:latest .'
-         sh 'docker push docker-registry:5000/java-app:latest'
-      }
-
-    }
   }
 
 }
