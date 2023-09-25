@@ -24,17 +24,12 @@ pipeline {
 
     stage('Docker image build and push') {
       steps {
-        sh 'docker build -t docker-registry:5000/java-app:latest .'
-        sh 'docker push docker-registry:5000/java-app:latest'
+        sh 'docker build -t devsecops89/devsecops:5000/java-app:latest .'
+        sh 'docker push devsecops89/devsecops:5000/java-app:latest'
+        docker push devsecops89/devsecops:tagname
        }
      }
 
-    stage('Kubernetes Deployment - DEV') {
-      steps {
-        sh "sed -i 's#REPLACE_ME#docker-registry:5000/java-app:latest#g' k8s_deployment_service.yaml"
-        sh "kubectl apply -f k8s_deployment_service.yaml"
-      }
-    }
   }
 }
 
