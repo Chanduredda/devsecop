@@ -26,7 +26,7 @@ pipeline {
       steps {
          withDockerRegistry([credentialsId: "docker-hub", url: ""]){
         sh 'docker build -t devsecops89:5000/java-app:latest'
-        sh 'docker push devsecops89/numericapp:5000/java-app:latest'
+        sh 'docker push devsecops89/devsecops:5000/java-app:latest'
          }
         
        }
