@@ -22,15 +22,16 @@ pipeline {
       }
     }
 
-    //   stage('Docker image build and push') {
-    //   steps {
-    //      withDockerRegistry([credentialsId: "docker-hub", url: ""]){
-    //     sh 'docker build -t devsecops89:5000/java-app:latest'
-    //     sh 'docker push devsecops89/devsecops:5000/java-app:latest'
-    //      }
+      stage('Docker image build and push') {
+      steps {
+        sh 'printenv'
+         withDockerRegistry([credentialsId: "docker-hub", url: ""]){
+        sh 'docker build -t devsecops89:5000/java-app:latest'
+        sh 'docker push devsecops89/numeric-app:5000/java-app:latest'
+         }
         
-    //    }
-    //  }
+       }
+     }
 
   //   stage('Push to Docker Hub') {
   //           steps {
@@ -49,32 +50,32 @@ pipeline {
   //  }
 
 
-stage('Docker image build and push') {
-    steps {
-        script {
-            // Define your Docker registry credentials ID and URL
-            def registryCredentials = 'devsecops89'
-            def registryUrl = 'https://hub.docker.com/repository/docker/devsecops89'
+// stage('Docker image build and push') {
+//     steps {
+//         script {
+//             // Define your Docker registry credentials ID and URL
+//             def registryCredentials = 'devsecops89'
+//             def registryUrl = 'https://hub.docker.com/repository/docker/devsecops89'
 
-            // Configure Docker registry with credentials
-            withDockerRegistry([credentialsId: registryCredentials, url: registryUrl]) {
+//             // Configure Docker registry with credentials
+//             withDockerRegistry([credentialsId: registryCredentials, url: registryUrl]) {
 
-                // Specify Dockerfile path and build context
-                def dockerfile = '/root/.docker'
-                def buildContext = '/root/.docker'
+//                 // Specify Dockerfile path and build context
+//                 def dockerfile = '/root/.docker'
+//                 def buildContext = '/root/.docker'
 
-                // Define the image name and tag
-                def imageName = 'devsecops89:5000/java-app:latest'
+//                 // Define the image name and tag
+//                 def imageName = 'devsecops89:5000/java-app:latest'
 
-                // Build the Docker image
-                sh "docker build -t ${imageName} -f ${dockerfile} ${buildContext}"
+//                 // Build the Docker image
+//                 sh "docker build -t ${imageName} -f ${dockerfile} ${buildContext}"
 
-                // Push the Docker image
-                sh "docker push ${imageName}"
-            }
-        }
-    }
-}
+//                 // Push the Docker image
+//                 sh "docker push ${imageName}"
+//             }
+//         }
+//     }
+// }
 
 
  }
