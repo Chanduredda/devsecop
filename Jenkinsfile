@@ -26,8 +26,8 @@ pipeline {
       steps {
         sh 'printenv'
          withDockerRegistry([credentialsId: "docker-hub", url: ""]){
-        sh 'docker build -t devsecops89:5000/java-app:latest'
-        sh 'docker push devsecops89/numeric-app:5000/java-app:latest'
+        // sh 'docker build -t devsecops89/numeric-app:""$GIT_COMMIT""'
+        sh 'docker push devsecops89/numeric-app:""$GIT_COMMIT""'
          }
         
        }
