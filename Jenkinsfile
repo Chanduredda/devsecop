@@ -22,14 +22,14 @@ pipeline {
       }
     }
 
-//  /* */   stage('Docker image build and push') {
-//       steps {
-//         sh 'docker build -t devsecops89:5000/java-app:latest'
-//         sh 'docker push devsecops89/devsecops:5000/java-app:latest'
+      stage('Docker image build and push') {
+      steps {
+        sh 'docker build -t devsecops89:5000/java-app:latest'
+        sh 'docker push devsecops89/devsecops:5000/java-app:latest'
         
-//        }
-//      }
-//   /* */
+       }
+     }
+  
    }
  }
 
